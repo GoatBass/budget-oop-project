@@ -23,9 +23,14 @@ const app = Vue.createApp({
       console.log(expense);
     },
 
+    //NO OLVIDAR NUNCA EL RETURN
     removeExpense(id) {
       this.expenses = this.expenses.filter((expense) => {
-        expense.id != id;
+        if (expense.id == id) {
+          this.totalExpense -= expense.amount;
+          this.balance += parseInt(expense.amount);
+        }
+        return expense.id != id;
       });
     },
   },
